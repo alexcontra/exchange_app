@@ -7,17 +7,17 @@ class ExchangeService {
   Future<ExchangeRepsponse> getMeSrvice(String token) async {
     Logger logger = Logger(
       printer: PrettyPrinter(
-        methodCount: 2, // number of method calls to be displayed
-        errorMethodCount: 8, // number of method calls if stacktrace is provided
-        lineLength: 50, // width of the output
-        colors: true, // Colorful log messages
-        printEmojis: true, // Print an emoji for each log message
-        printTime: true, // Should each log print contain a timestamp
+        methodCount: 2,
+        errorMethodCount: 8,
+        lineLength: 50,
+        colors: true,
+        printEmojis: true,
+        printTime: true,
       ),
     );
     final dio = Dio();
     final client = ExchangeApi(dio);
-    dio.options = BaseOptions(baseUrl: 'https://alsys-be.herokuapp.com/v1');
+    dio.options = BaseOptions(baseUrl: 'http://0gzg3.mocklab.io');
     Map<String, dynamic> body = {};
     late ExchangeRepsponse exchangeRepsponse;
     try {
