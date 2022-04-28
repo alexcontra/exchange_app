@@ -3,7 +3,7 @@ import 'package:exchangeapp/network/service/exchange_service.dart';
 import 'package:exchangeapp/src/exchange/bussines_logic/exchange_controller.dart';
 import 'package:get/get.dart';
 
-final ExchangeController exchangeController = Get.put(ExchangeController());
+final ExchangeController exchangeController = Get.find();
 Future<void> populateLists() async {
   ExchangeRepsponse exchangeRepsponse =
       await ExchangeService().exchangeService();
