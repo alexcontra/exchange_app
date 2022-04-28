@@ -18,10 +18,9 @@ class ExchangeService {
     final dio = Dio();
     final client = ExchangeApi(dio);
     dio.options = BaseOptions(baseUrl: 'http://0gzg3.mocklab.io');
-    Map<String, dynamic> body = {};
     late ExchangeRepsponse exchangeRepsponse;
     try {
-      exchangeRepsponse = await client.exchangeApi(content: body);
+      exchangeRepsponse = await client.exchangeApi();
       logger.i('Exchange service: $exchangeRepsponse');
     } on DioError catch (e) {
       logger.e('exchange service error: $e');

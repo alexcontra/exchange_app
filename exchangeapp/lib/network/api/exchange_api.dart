@@ -9,7 +9,5 @@ abstract class ExchangeApi {
   factory ExchangeApi(Dio dio, {String baseUrl}) = _ExchangeApi;
 
   @GET('/json/1')
-  Future<ExchangeRepsponse> exchangeApi({
-    @Body() required Map<String, dynamic> content,
-  });
+  Future<ExchangeRepsponse> exchangeApi();
 }

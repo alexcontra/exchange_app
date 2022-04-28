@@ -16,12 +16,11 @@ class _ExchangeApi implements ExchangeApi {
   String? baseUrl;
 
   @override
-  Future<ExchangeRepsponse> exchangeApi({required content}) async {
+  Future<ExchangeRepsponse> exchangeApi() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(content);
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ExchangeRepsponse>(
             Options(method: 'GET', headers: _headers, extra: _extra)
