@@ -1,10 +1,12 @@
 import 'package:exchangeapp/network/api/exchange_api.dart';
 import 'package:exchangeapp/network/response/exchange_repsponse.dart';
+import 'package:exchangeapp/src/exchange/bussines_logic/exchange_controller.dart';
+import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:dio/dio.dart';
 
 class ExchangeService {
-  Future<ExchangeRepsponse> getMeSrvice(String token) async {
+  Future<ExchangeRepsponse> exchangeService() async {
     Logger logger = Logger(
       printer: PrettyPrinter(
         methodCount: 2,
@@ -15,15 +17,20 @@ class ExchangeService {
         printTime: true,
       ),
     );
+    final ExchangeController exchangeController = Get.find();
+
     final dio = Dio();
     final client = ExchangeApi(dio);
     dio.options = BaseOptions(baseUrl: 'http://0gzg3.mocklab.io');
     late ExchangeRepsponse exchangeRepsponse;
+    exchangeController.isLoading.value = true;
     try {
       exchangeRepsponse = await client.exchangeApi();
       logger.i('Exchange service: $exchangeRepsponse');
     } on DioError catch (e) {
       logger.e('exchange service error: $e');
+    } finally {
+      exchangeController.isLoading.value = false;
     }
 
     return exchangeRepsponse;

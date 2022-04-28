@@ -1,3 +1,7 @@
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
-class ExchangeController extends GetxController {}
+class ExchangeController extends GetxController {
+  RxBool isLoading = false.obs;
+  RxList<dynamic> rates = [].obs;
+  RxList<dynamic> pairs = [].obs;
+}
