@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'exchange_repsponse.dart';
 
 // **************************************************************************
@@ -9,8 +7,16 @@ part of 'exchange_repsponse.dart';
 // **************************************************************************
 
 _$_ExchangeRepsponse _$$_ExchangeRepsponseFromJson(Map<String, dynamic> json) =>
-    _$_ExchangeRepsponse();
+    _$_ExchangeRepsponse(
+      from: json['from'] as String?,
+      to: json['to'] as String?,
+      rate: json['rate'] as String?,
+    );
 
 Map<String, dynamic> _$$_ExchangeRepsponseToJson(
         _$_ExchangeRepsponse instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'from': instance.from,
+      'to': instance.to,
+      'rate': instance.rate,
+    };

@@ -22,8 +22,12 @@ ExchangeRepsponse _$ExchangeRepsponseFromJson(Map<String, dynamic> json) {
 class _$ExchangeRepsponseTearOff {
   const _$ExchangeRepsponseTearOff();
 
-  _ExchangeRepsponse call() {
-    return _ExchangeRepsponse();
+  _ExchangeRepsponse call({String? from, String? to, String? rate}) {
+    return _ExchangeRepsponse(
+      from: from,
+      to: to,
+      rate: rate,
+    );
   }
 
   ExchangeRepsponse fromJson(Map<String, Object?> json) {
@@ -36,7 +40,14 @@ const $ExchangeRepsponse = _$ExchangeRepsponseTearOff();
 
 /// @nodoc
 mixin _$ExchangeRepsponse {
+  String? get from => throw _privateConstructorUsedError;
+  String? get to => throw _privateConstructorUsedError;
+  String? get rate => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ExchangeRepsponseCopyWith<ExchangeRepsponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -44,6 +55,7 @@ abstract class $ExchangeRepsponseCopyWith<$Res> {
   factory $ExchangeRepsponseCopyWith(
           ExchangeRepsponse value, $Res Function(ExchangeRepsponse) then) =
       _$ExchangeRepsponseCopyWithImpl<$Res>;
+  $Res call({String? from, String? to, String? rate});
 }
 
 /// @nodoc
@@ -54,13 +66,38 @@ class _$ExchangeRepsponseCopyWithImpl<$Res>
   final ExchangeRepsponse _value;
   // ignore: unused_field
   final $Res Function(ExchangeRepsponse) _then;
+
+  @override
+  $Res call({
+    Object? from = freezed,
+    Object? to = freezed,
+    Object? rate = freezed,
+  }) {
+    return _then(_value.copyWith(
+      from: from == freezed
+          ? _value.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as String?,
+      to: to == freezed
+          ? _value.to
+          : to // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rate: rate == freezed
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$ExchangeRepsponseCopyWith<$Res> {
+abstract class _$ExchangeRepsponseCopyWith<$Res>
+    implements $ExchangeRepsponseCopyWith<$Res> {
   factory _$ExchangeRepsponseCopyWith(
           _ExchangeRepsponse value, $Res Function(_ExchangeRepsponse) then) =
       __$ExchangeRepsponseCopyWithImpl<$Res>;
+  @override
+  $Res call({String? from, String? to, String? rate});
 }
 
 /// @nodoc
@@ -73,29 +110,71 @@ class __$ExchangeRepsponseCopyWithImpl<$Res>
 
   @override
   _ExchangeRepsponse get _value => super._value as _ExchangeRepsponse;
+
+  @override
+  $Res call({
+    Object? from = freezed,
+    Object? to = freezed,
+    Object? rate = freezed,
+  }) {
+    return _then(_ExchangeRepsponse(
+      from: from == freezed
+          ? _value.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as String?,
+      to: to == freezed
+          ? _value.to
+          : to // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rate: rate == freezed
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_ExchangeRepsponse implements _ExchangeRepsponse {
-  _$_ExchangeRepsponse();
+  _$_ExchangeRepsponse({this.from, this.to, this.rate});
 
   factory _$_ExchangeRepsponse.fromJson(Map<String, dynamic> json) =>
       _$$_ExchangeRepsponseFromJson(json);
 
   @override
+  final String? from;
+  @override
+  final String? to;
+  @override
+  final String? rate;
+
+  @override
   String toString() {
-    return 'ExchangeRepsponse()';
+    return 'ExchangeRepsponse(from: $from, to: $to, rate: $rate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _ExchangeRepsponse);
+        (other.runtimeType == runtimeType &&
+            other is _ExchangeRepsponse &&
+            const DeepCollectionEquality().equals(other.from, from) &&
+            const DeepCollectionEquality().equals(other.to, to) &&
+            const DeepCollectionEquality().equals(other.rate, rate));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(from),
+      const DeepCollectionEquality().hash(to),
+      const DeepCollectionEquality().hash(rate));
+
+  @JsonKey(ignore: true)
+  @override
+  _$ExchangeRepsponseCopyWith<_ExchangeRepsponse> get copyWith =>
+      __$ExchangeRepsponseCopyWithImpl<_ExchangeRepsponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -104,8 +183,20 @@ class _$_ExchangeRepsponse implements _ExchangeRepsponse {
 }
 
 abstract class _ExchangeRepsponse implements ExchangeRepsponse {
-  factory _ExchangeRepsponse() = _$_ExchangeRepsponse;
+  factory _ExchangeRepsponse({String? from, String? to, String? rate}) =
+      _$_ExchangeRepsponse;
 
   factory _ExchangeRepsponse.fromJson(Map<String, dynamic> json) =
       _$_ExchangeRepsponse.fromJson;
+
+  @override
+  String? get from;
+  @override
+  String? get to;
+  @override
+  String? get rate;
+  @override
+  @JsonKey(ignore: true)
+  _$ExchangeRepsponseCopyWith<_ExchangeRepsponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
