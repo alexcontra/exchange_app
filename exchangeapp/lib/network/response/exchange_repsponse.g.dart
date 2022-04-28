@@ -8,15 +8,13 @@ part of 'exchange_repsponse.dart';
 
 _$_ExchangeRepsponse _$$_ExchangeRepsponseFromJson(Map<String, dynamic> json) =>
     _$_ExchangeRepsponse(
-      from: json['from'] as String?,
-      to: json['to'] as String?,
-      rate: json['rate'] as String?,
+      rates: json['rates'] as List<dynamic>?,
+      pairs: json['pairs'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$$_ExchangeRepsponseToJson(
         _$_ExchangeRepsponse instance) =>
     <String, dynamic>{
-      'from': instance.from,
-      'to': instance.to,
-      'rate': instance.rate,
+      'rates': instance.rates,
+      'pairs': instance.pairs,
     };
