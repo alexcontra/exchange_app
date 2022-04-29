@@ -6,7 +6,8 @@ part 'exchange_repsponse.g.dart';
 @freezed
 class ExchangeRepsponse with _$ExchangeRepsponse {
   factory ExchangeRepsponse({
-    Map<String, dynamic>? content,
+    List<dynamic>? rates,
+    List<dynamic>? pairs,
   }) = _ExchangeRepsponse;
 
   factory ExchangeRepsponse.fromJson(Map<String, dynamic> json) =>
