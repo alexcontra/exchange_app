@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 exchangeContainer(String from, String to) {
   TextEditingController currentController = TextEditingController();
+  RxString currentValue = ''.obs;
   return Container(
     height: 100.0,
     margin: const EdgeInsets.only(left: 22.0, right: 22.0),
@@ -16,10 +17,11 @@ exchangeContainer(String from, String to) {
           keyboardType: TextInputType.number,
           onChanged: (value) {
             calculateValue(from, to, value);
+            currentValue.value = exchangeController.solution.value;
           },
         ),
       ),
-      Obx(() => Text('= ${exchangeController.solution.value}'))
+      Obx(() => Text('= $currentValue'))
     ]),
   );
 }
@@ -29,14 +31,38 @@ calculateValue(String from, String to, String value) {
     Map<String, dynamic> currentMap = element;
     if (currentMap.values.elementAt(0) == from &&
         currentMap.values.elementAt(1) == to) {
-      double doubleValue = double.parse(value);
-      double rate = double.parse(currentMap.values.elementAt(2));
-      exchangeController.solution.value = (doubleValue * rate).toString();
+      exchangeController.solution.value =
+          (double.parse(value) * double.parse(currentMap.values.elementAt(2)))
+              .toString();
+      exchangeController.directExchangeNotFound.value = false;
     } else {
       exchangeController.directExchangeNotFound.value = true;
     }
   }
-  if (exchangeController.directExchangeNotFound.value) {}
+  if (exchangeController.directExchangeNotFound.value) {
+    String firstRate = '';
+    String secondRate = '';
+    String newToChange = '';
+    for (var element in exchangeController.rates) {
+      Map<String, dynamic> currentMap = element;
+      if (currentMap.values.elementAt(0) == from) {
+        firstRate = currentMap.values.elementAt(2);
+        newToChange = currentMap.values.elementAt(1);
+      }
+    }
+    if (newToChange.isNotEmpty) {
+      for (var element in exchangeController.rates) {
+        Map<String, dynamic> currentMap = element;
+        if (currentMap.values.elementAt(1) == newToChange) {
+          secondRate = currentMap.values.elementAt(2);
+        }
+      }
+      exchangeController.solution.value = (double.parse(firstRate) *
+              double.parse(secondRate) *
+              double.parse(value))
+          .toString();
+    }
+  }
 }
 
 getPairs(int index) {
