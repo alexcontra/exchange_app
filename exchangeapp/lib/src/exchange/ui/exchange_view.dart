@@ -1,4 +1,5 @@
 import 'package:exchangeapp/network/service/exchange_service.dart';
+import 'package:exchangeapp/src/exchange/bussines_logic/exchange_view_model.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,13 +19,13 @@ class _ExchangePageState extends State<ExchangePage> {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return ListView.builder(
-              itemCount: 3,
+              itemCount: exchangeController.pairs.length,
               itemBuilder: (BuildContext context, int index) {
-                return Text('ceva');
+                return getPairs(index);
               },
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
