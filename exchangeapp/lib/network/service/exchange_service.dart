@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:dio/dio.dart';
 
+final ExchangeController exchangeController = Get.put(ExchangeController());
+
 class ExchangeService {
   Future<ExchangeRepsponse> exchangeService() async {
     Logger logger = Logger(
@@ -17,7 +19,6 @@ class ExchangeService {
         printTime: true,
       ),
     );
-    final ExchangeController exchangeController = Get.find();
 
     final dio = Dio();
     final client = ExchangeApi(dio);
@@ -26,6 +27,8 @@ class ExchangeService {
     exchangeController.isLoading.value = true;
     try {
       exchangeRepsponse = await client.exchangeApi();
+      exchangeController.pairs = exchangeRepsponse.pairs as List<dynamic>;
+      exchangeController.rates = exchangeRepsponse.rates as List<dynamic>;
       logger.i('Exchange service: $exchangeRepsponse');
     } on DioError catch (e) {
       logger.e('exchange service error: $e');
